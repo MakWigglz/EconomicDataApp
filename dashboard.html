@@ -40,7 +40,10 @@
     <h1>Economic Indicators Dashboard</h1>
     <div class="button-container">
         {% for indicator in indicators %}
-        <button class="indicator-button" style="background-color: hsl({{ loop.index * 20 }}, 70%, 60%);" onclick="loadData('{{ indicator }}')">{{ indicator }}</button>
+<<<<<<< Tabnine <<<<<<<
+      
+        <button class="indicator-button" style="background-color: hsl({{ loop.index * 20 }}, 70%, 60%)" onclick="loadData('{{ indicator }}')">{{ indicator }}</button>//+
+>>>>>>> Tabnine >>>>>>>// {"conversationId":"d885e3fb-1790-47fb-89e1-5410f0fb4c60","source":"instruct"}
         {% endfor %}
     </div>
     <div id="chart-container">
