@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Indicators Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .indicator-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #chart-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Economic Indicators Dashboard</h1>
+    <div class="button-container">
+        {% for indicator in indicators %}
+        <button class="indicator-button" style="background-color: hsl({{ loop.index * 20 }}, 70%, 60%);" onclick="loadData('{{ indicator }}')">{{ indicator }}</button>
+        {% endfor %}
+    </div>
+    <div id="chart-container">
+        <img id="chart" src="" alt="Indicator Chart" style="width: 100%;">
+    </div>
+    <script>
+        function loadData(indicator) {
+            $.getJSON('/data/' + indicator, function(data) {
+                $('#chart').attr('src', 'data:image/png;base64,' + data.plot_url);
+            });
+        }
+    </script>
+</body>
+</html>
